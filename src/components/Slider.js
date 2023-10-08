@@ -100,7 +100,7 @@ let a = {
             <i className="fa fa-smile-o"></i>
             <p id="number2" className="number">55</p>
             <span></span>
-            <p>Happy clients</p>
+            <p>Happy</p>
         </div>
         <div className="item wow fadeInUpBig animated animated" data-number="359" >
             <i className="fa fa-coffee"></i>
