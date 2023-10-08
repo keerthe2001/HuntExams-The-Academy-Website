@@ -26,17 +26,17 @@ const Slider = () => {
   const mobileSlides = [
     {
       id: 1,
-      src: 'https://keerthe2001.github.io/HuntExams/images-mobile/1.png',
+      src: 'https://keerthe2001.github.io/HuntExams/images/1.png',
       alt: 'Mobile Slide 1',
     },
     {
       id: 2,
-      src: 'https://keerthe2001.github.io/HuntExams/images-mobile/2.png',
+      src: 'https://keerthe2001.github.io/HuntExams/images/2.png',
       alt: 'Mobile Slide 2',
     },
     {
       id: 3,
-      src: 'https://keerthe2001.github.io/HuntExams/images-mobile/3.png',
+      src: 'https://keerthe2001.github.io/HuntExams/images/3.png',
       alt: 'Mobile Slide 3',
     },
   ];
