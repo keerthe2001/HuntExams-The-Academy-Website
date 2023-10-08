@@ -1,0 +1,43 @@
+.slider {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  .slide {
+    display: none;
+    transition: opacity 0.5s;
+  }
+  
+  .slide.active {
+    display: block;
+  }
+  
+  img {
+    /* max-width: 100%; */
+    /* height: auto; */
+  }
+  
+  .prev,
+  .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 20px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .prev {
+    left: 0;
+    border-radius: 0 5px 5px 0;
+  }
+  
+  .next {
+    right: 0;
+    border-radius: 5px 0 0 5px;
+  }
+  
