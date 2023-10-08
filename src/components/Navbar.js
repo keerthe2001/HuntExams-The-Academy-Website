@@ -7,7 +7,7 @@ export default function Navbar() {
     <header className="bg-white sticky-top shadow d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-1 mb-4 px-2 border-bottom ">
 
       <a href="/" className="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-        <img src='../images/logo desktop.png' alt='' style={{width:'75px'}}/>
+        <img src='https://keerthe2001.github.io/HuntExams/images/logo%20desktop.png' alt='' style={{width:'75px'}}/>
         <span style={{margin:'5px',fontWeight:'bold',fontFamily: 'Autour One, cursive'}}>HuntExams</span>
       </a>
 
@@ -15,7 +15,7 @@ export default function Navbar() {
         <li><Link to="/" className="nav-link px-2 link-secondary">Home</Link></li>
         <li><a href="/#trendingcourse" className="nav-link px-2 link-dark">Features</a></li>
         <li><a href="/#studentfeedbacks" className="nav-link px-2 link-dark">Feedbacks</a></li>
-        <li><a href="#" className="nav-link px-2 link-dark">FAQs</a></li>
+        <li><a href="#" className="nav-link px-2 link-dark">Pricing</a></li>
         <li><a href="#" className="nav-link px-2 link-dark">About</a></li>
       </ul>
 
