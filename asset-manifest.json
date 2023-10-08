@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/HuntExams/static/css/main.fbe93658.css",
-    "main.js": "/HuntExams/static/js/main.1f4acde3.js",
+    "main.js": "/HuntExams/static/js/main.329510cd.js",
     "static/js/787.f602ab47.chunk.js": "/HuntExams/static/js/787.f602ab47.chunk.js",
     "index.html": "/HuntExams/index.html",
     "main.fbe93658.css.map": "/HuntExams/static/css/main.fbe93658.css.map",
-    "main.1f4acde3.js.map": "/HuntExams/static/js/main.1f4acde3.js.map",
+    "main.329510cd.js.map": "/HuntExams/static/js/main.329510cd.js.map",
     "787.f602ab47.chunk.js.map": "/HuntExams/static/js/787.f602ab47.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fbe93658.css",
-    "static/js/main.1f4acde3.js"
+    "static/js/main.329510cd.js"
   ]
 }
