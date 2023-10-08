@@ -72,7 +72,7 @@ let a = {
           key={slide.id}
           className={`slide ${index === currentSlide ? 'active' : ''}`}
         >
-          <img src={slide.src} alt={slide.alt} class="img-slider"/>
+          <img src={slide.src} alt={slide.alt} className="img-slider"/>
         </div>
       ))}
       <button className="prev" onClick={prevSlide}>
@@ -94,7 +94,7 @@ let a = {
             <i className="fa fa-briefcase"></i>
             <p id="number1" className="number">12</p>
             <span></span>
-            <p>Projects done</p>
+            <p>Happy Students</p>
         </div>
         <div className="item wow fadeInUpBig animated animated" data-number="55" >
             <i className="fa fa-smile-o"></i>

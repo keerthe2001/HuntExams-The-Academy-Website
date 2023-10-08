@@ -18,16 +18,9 @@ function App() {
       <Routes>
           <Route path="/LoginSignUp" element={<LoginSignUp/>}>
           </Route>
-         
-          <Route path="/" element={<Slider/>}>
-          </Route>
-          <Route path="/#trendingcourse" element={<Slider/>}>
-          </Route>
-          <Route path="/Testimonials" element={<Slider/>}>
-          </Route>
-         
         </Routes>
     
+      <Slider/>
       <Footer/>
         </Router>
 

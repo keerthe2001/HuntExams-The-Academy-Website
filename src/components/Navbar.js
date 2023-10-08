@@ -20,7 +20,7 @@ export default function Navbar() {
       </ul>
 
       <div className="col-md-3 text-end">
-        <button type="button" className="btn btn-outline-primary me-2"> <Link exact to='/LoginSignUp'>Login</Link></button>
+        <button type="button" className="btn btn-outline-primary me-2"> <Link  to='/LoginSignUp'>Login</Link></button>
         <button type="button" className="btn btn-primary">Sign-up</button>
       </div>
     </header>
