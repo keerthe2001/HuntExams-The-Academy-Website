@@ -8,17 +8,17 @@ const Slider = () => {
   const desktopSlides = [
     {
       id: 1,
-      src: 'https://keerthe2001.github.io/HuntExams/images2/1.png',
+      src: 'https://keerthe2001.github.io/HuntExams-The-Academy-Website/images2/1.png',
       alt: 'Slide 1',
     },
     {
       id: 2,
-      src: 'https://keerthe2001.github.io/HuntExams/images2/2.png',
+      src: 'https://keerthe2001.github.io/HuntExams-The-Academy-Website/images2/2.png',
       alt: 'Slide 2',
     },
     {
       id: 3,
-      src: 'https://keerthe2001.github.io/HuntExams/images2/3.png',
+      src: 'https://keerthe2001.github.io/HuntExams-The-Academy-Website/images2/3.png',
       alt: 'Slide 3',
     },
   ];
@@ -26,17 +26,17 @@ const Slider = () => {
   const mobileSlides = [
     {
       id: 1,
-      src: 'https://keerthe2001.github.io/HuntExams/images/1.png',
+      src: 'https://keerthe2001.github.io/HuntExams-The-Academy-Website/images/1.png',
       alt: 'Mobile Slide 1',
     },
     {
       id: 2,
-      src: 'https://keerthe2001.github.io/HuntExams/images/2.png',
+      src: 'https://keerthe2001.github.io/HuntExams-The-Academy-Website/images/2.png',
       alt: 'Mobile Slide 2',
     },
     {
       id: 3,
-      src: 'https://keerthe2001.github.io/HuntExams/images/3.png',
+      src: 'https://keerthe2001.github.io/HuntExams-The-Academy-Website/images/3.png',
       alt: 'Mobile Slide 3',
     },
   ];
@@ -131,7 +131,7 @@ let a = {
         
         <div className="col">
           <div className="card shadow-sm">
-          <img src='https://keerthe2001.github.io/HuntExams/images2/css.jpg' alt=' '/>
+          <img src='https://keerthe2001.github.io/HuntExams-The-Academy-Website/images2/css.jpg' alt=' '/>
 
             <div className="card-body">
               <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -147,7 +147,7 @@ let a = {
         </div>
         <div className="col">
           <div className="card shadow-sm">
-          <img src='https://keerthe2001.github.io/HuntExams/images2/react.jpg' alt=' '/>
+          <img src='https://keerthe2001.github.io/HuntExams-The-Academy-Website/images2/react.jpg' alt=' '/>
 
             <div className="card-body">
               <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -163,7 +163,7 @@ let a = {
         </div>
         <div className="col">
           <div className="card shadow-sm">
-              <img src='https://keerthe2001.github.io/HuntExams/images2/html.png' alt=' '/>
+              <img src='https://keerthe2001.github.io/HuntExams-The-Academy-Website/images2/html.png' alt=' '/>
             <div className="card-body">
               <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <div className="d-flex justify-content-between align-items-center">
@@ -198,7 +198,7 @@ let a = {
         <div className="card bg-white shadow">
           <div className="card-body py-4 mt-2">
             <div className="d-flex justify-content-center mb-4">
-            <img src="https://keerthe2001.github.io/HuntExams/images2/f2.png"
+            <img src="https://keerthe2001.github.io/HuntExams-The-Academy-Website/images2/f2.png"
                 className="rounded-circle shadow-1-strong" width="100" height="100" />
             </div>
             <h5 className="font-weight-bold">Pavithra G</h5>
@@ -230,7 +230,7 @@ let a = {
         <div className="card shadow">
           <div className="card-body py-4 mt-2">
             <div className="d-flex justify-content-center mb-4">
-              <img src="https://keerthe2001.github.io/HuntExams/images2/f1.png" className="rounded-circle shadow-1-strong" width="100" height="100" />
+              <img src="https://keerthe2001.github.io/HuntExams-The-Academy-Website/images2/f1.png" className="rounded-circle shadow-1-strong" width="100" height="100" />
             </div>
             <h5 className="font-weight-bold">Nithya Shree K.M</h5>
             <h6 className="font-weight-bold my-3">Bsc Computer Science at <br/> Shrimathi Devakunva nanalal Bhatt Vishnava College For Women</h6>
@@ -261,7 +261,7 @@ let a = {
         <div className="card shadow">
           <div className="card-body py-4 mt-2">
             <div className="d-flex justify-content-center mb-4">
-            <img src="https://keerthe2001.github.io/HuntExams/images2/f3.png"
+            <img src="https://keerthe2001.github.io/HuntExams-The-Academy-Website/images2/f3.png"
                 className="rounded-circle shadow-1-strong" width="100" height="100" />
             </div>
             <h5 className="font-weight-bold">Anagha. R</h5>
