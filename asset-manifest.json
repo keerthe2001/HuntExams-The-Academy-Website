@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/HuntExams/static/css/main.fbe93658.css",
-    "main.js": "/HuntExams/static/js/main.a496b905.js",
-    "static/js/787.f602ab47.chunk.js": "/HuntExams/static/js/787.f602ab47.chunk.js",
-    "index.html": "/HuntExams/index.html",
-    "main.fbe93658.css.map": "/HuntExams/static/css/main.fbe93658.css.map",
-    "main.a496b905.js.map": "/HuntExams/static/js/main.a496b905.js.map",
-    "787.f602ab47.chunk.js.map": "/HuntExams/static/js/787.f602ab47.chunk.js.map"
+    "main.css": "/HuntExams-The-Academy-Website/static/css/main.fbe93658.css",
+    "main.js": "/HuntExams-The-Academy-Website/static/js/main.e778523d.js",
+    "static/js/787.f602ab47.chunk.js": "/HuntExams-The-Academy-Website/static/js/787.f602ab47.chunk.js",
+    "index.html": "/HuntExams-The-Academy-Website/index.html",
+    "main.fbe93658.css.map": "/HuntExams-The-Academy-Website/static/css/main.fbe93658.css.map",
+    "main.e778523d.js.map": "/HuntExams-The-Academy-Website/static/js/main.e778523d.js.map",
+    "787.f602ab47.chunk.js.map": "/HuntExams-The-Academy-Website/static/js/787.f602ab47.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fbe93658.css",
-    "static/js/main.a496b905.js"
+    "static/js/main.e778523d.js"
   ]
 }
