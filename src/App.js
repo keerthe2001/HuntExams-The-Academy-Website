@@ -7,6 +7,7 @@ import LoginSignUp from './components/LoginSignUp';
 
 import Footer from './components/Footer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
 
 
 function App() {
@@ -16,11 +17,11 @@ function App() {
 
       <Navbar/>
       <Routes>
-          <Route path="/LoginSignUp" element={<LoginSignUp/>}>
-          </Route>
-        </Routes>
+          <Route index exact path="/" element={<Home/>} />
+          <Route exact path="/LoginSignUp" element={<LoginSignUp/>} />
+      </Routes>
     
-      <Slider/>
+      
       <Footer/>
         </Router>
 

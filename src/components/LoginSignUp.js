@@ -4,9 +4,9 @@ import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } f
 function App() {
 
   return (
-    <MDBContainer fluid className="p-3 my-5 h-custom">
+    <MDBContainer fluid className="container p-10 my-5 h-custom">
 
-      <MDBRow>
+      <MDBRow className='container'>
 
         <MDBCol col='10' md='6'>
           <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" className="img-fluid" alt="Sample image" />
@@ -48,39 +48,8 @@ function App() {
             <MDBBtn className="mb-0 px-5" size='lg'>Login</MDBBtn>
             <p className="small fw-bold mt-2 pt-1 mb-2">Don't have an account? <a href="#!" className="link-danger">Register</a></p>
           </div>
-
         </MDBCol>
-
       </MDBRow>
-
-      <div className="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-
-        <div className="text-white mb-3 mb-md-0">
-          Copyright © 2020. All rights reserved.
-        </div>
-
-        <div>
-
-          <MDBBtn tag='a' color='none' className='mx-3' style={{ color: 'white' }}>
-            <MDBIcon fab icon='facebook-f' size="md"/>
-          </MDBBtn>
-
-          <MDBBtn tag='a' color='none' className='mx-3' style={{ color: 'white'  }}>
-            <MDBIcon fab icon='twitter' size="md"/>
-          </MDBBtn>
-
-          <MDBBtn tag='a' color='none' className='mx-3' style={{ color: 'white'  }}>
-            <MDBIcon fab icon='google' size="md"/>
-          </MDBBtn>
-
-          <MDBBtn tag='a' color='none' className='mx-3' style={{ color: 'white'  }}>
-            <MDBIcon fab icon='linkedin-in' size="md"/>
-          </MDBBtn>
-
-        </div>
-
-      </div>
-
     </MDBContainer>
   );
 }
