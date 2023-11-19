@@ -7,7 +7,7 @@ export default function Navbar() {
     <header className="bg-white sticky-top shadow d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-1 mb-4 px-2 border-bottom ">
 
       <Link href="/" className="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-        <img src='https://keerthe2001.github.io/HuntExams-The-Academy-Website/images/logo desktop2.jpg' alt='HuntExam' style={{width:'75px'}}/>
+        <img src='https://keerthe2001.github.io/HuntExams-The-Academy-Website/images/logo-desktop2.jpg' alt='HuntExam' style={{width:'75px'}}/>
         {/* <span style={{margin:'5px',fontWeight:'bold',fontFamily: 'Autour One, cursive'}}>HuntExams</span> */}
       </Link>
 
