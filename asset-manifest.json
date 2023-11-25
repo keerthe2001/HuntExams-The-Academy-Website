@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/HuntExams-The-Academy-Website/static/css/main.fbe93658.css",
-    "main.js": "/HuntExams-The-Academy-Website/static/js/main.ee2822c2.js",
+    "main.js": "/HuntExams-The-Academy-Website/static/js/main.77d8558f.js",
     "static/js/787.f602ab47.chunk.js": "/HuntExams-The-Academy-Website/static/js/787.f602ab47.chunk.js",
     "index.html": "/HuntExams-The-Academy-Website/index.html",
     "main.fbe93658.css.map": "/HuntExams-The-Academy-Website/static/css/main.fbe93658.css.map",
-    "main.ee2822c2.js.map": "/HuntExams-The-Academy-Website/static/js/main.ee2822c2.js.map",
+    "main.77d8558f.js.map": "/HuntExams-The-Academy-Website/static/js/main.77d8558f.js.map",
     "787.f602ab47.chunk.js.map": "/HuntExams-The-Academy-Website/static/js/787.f602ab47.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fbe93658.css",
-    "static/js/main.ee2822c2.js"
+    "static/js/main.77d8558f.js"
   ]
 }
