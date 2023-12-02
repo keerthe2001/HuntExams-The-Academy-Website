@@ -4,9 +4,9 @@ export default function Features() {
   return (
     <>
 
-
-      <div className="album py-5 bg-light" id="trendingcourse">
-        <div className="container" >
+<section >
+      <div className="album py-5 bg-light" >
+        <div className="container" id="trendingcourse" >
           <div className=" text-center">
             <h3 className="fw-bold mb-4">Trending Courses</h3>
             <p className="mb-4 pb-2 mb-md-5 pb-md-0">
@@ -65,6 +65,7 @@ export default function Features() {
           </div>
         </div>
       </div>
+      </section>
     </>
   )
 }
