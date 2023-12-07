@@ -30,7 +30,7 @@ const StudentState = (props) => {
         catch (error) {
             setstudents(studentslist)
             // console.error('Error fetching notes:', error.message);
-            alert("server error")
+            alert(error.message)
 
         }
     }
@@ -50,7 +50,7 @@ const StudentState = (props) => {
           setSettings([data]);
         } catch (error) {
         //   console.error('Error fetching settings:', error);
-        alert("server error")
+        alert(error.message)
 
         }
       };
