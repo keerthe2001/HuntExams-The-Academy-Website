@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const fetchuser = require('../Middleware/fetchuser');
 
-const JWT_SECRET = "keertheshwaran@123"
+const JWT_SECRET = process.env.JWT_SECRET
 // ROUTE1 -  Handle POST requests to create and save a user
 router.post('/createUser', [
   body('name','Enter a Name with length Min 3').isLength({min:5}),
@@ -102,8 +102,8 @@ router.post('/login', [
       res.json({authtoken: authtoken}) 
     }
     catch (error) {
-      console.error(error.message);
-      res.status(500).send('Server Error');
+      // console.error(error.message);
+      // res.status(500).send('Server Error');
     }
 });
 

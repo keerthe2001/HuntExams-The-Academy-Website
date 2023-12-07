@@ -1,19 +1,25 @@
-import React, { useContext, useEffect,useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import feedbackContext from '../../context/feedbackContext'
 import { Button, Table } from 'react-bootstrap';
 
 export default function ManageFeedbacks() {
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const context = useContext(feedbackContext);
     const { feedback, handleFeedbackget } = context;
     useEffect(() => {
         const run = async () => {
+            setLoading(true);
             await handleFeedbackget();
         }
         run();
+        setTimeout(() => {
+
+            setLoading(false);
+        }, 1000);
+
     }, [])
-    const host = "http://localhost:5000"
+    const host = process.env.REACT_APP_API_URL
     const handleApprove = async (feedbackId, status) => {
         setLoading(true);
         const statusid = status;
@@ -40,7 +46,9 @@ export default function ManageFeedbacks() {
         } catch (error) {
             console.error('Error approving feedback:', error.message);
         } finally {
-            setLoading(false);
+            setTimeout(() => {
+                setLoading(false);
+            }, 500);
         }
     }
     console.log(localStorage.getItem('token') && feedback && feedback[0] && feedback[0].feedbackList && feedback[0].feedbackList[0].name);
@@ -49,7 +57,16 @@ export default function ManageFeedbacks() {
 
             <h2 className='text-center my-4 fw-bold'  >Student Feedbacks</h2>
             {loading ? (
-                <img src="/images/logoloading.gif" alt="Loading" />
+                <div className='d-flex justify-content-center align-items-center'>
+                    <div className="overlay"></div>
+
+                    <div className=' mx-auto text-center bg-light rounded shadow' style={{ position: 'absolute', zIndex: 2, top: '30%', left: '42%', width: "200px" }}>
+
+                        <img className='absolute' style={{ zIndex: 2 }} src="https://huntexams.000webhostapp.com/live-previews/images/logoloading2.gif" alt="Loading" />
+
+                        <div style={{ zIndex: 2 }} className='text-center fw-bold pb-2'>Hunting..</div>
+                    </div>
+                </div>
             ) : ('')}
             <div className='mx-3 shadow overflow-scroll rounded' style={{ maxHeight: '300px' }} >
                 <table className="table" >

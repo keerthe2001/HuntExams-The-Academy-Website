@@ -17,7 +17,7 @@ router.post('/addstudent', fetchuser ,async (req, res) => {
 });
 
 // Get All Students
-router.get('/getstudents', async (req, res) => {
+router.get('/getstudents',fetchuser, async (req, res) => {
     try {
         const students = await Student.find();
         res.json(students);
@@ -28,7 +28,7 @@ router.get('/getstudents', async (req, res) => {
 });
 
 // Update Student
-router.put('/:id', async (req, res) => {
+router.put('/:id',fetchuser, async (req, res) => {
     try {
         const updatedStudent = await Student.findByIdAndUpdate(req.params.id, req.body, { new: true });
         res.json({ message: 'Student Details Updated successfully',success:true,updatedStudent});
@@ -39,7 +39,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete Student
-router.delete('/:id', async (req, res) => {
+router.delete('/:id',fetchuser, async (req, res) => {
     try {
         const deletedStudent = await Student.findByIdAndRemove(req.params.id);
         res.json(deletedStudent);

@@ -10,10 +10,26 @@ const FeedbackSchema = new Schema({
         type:String,
         required:true
     },
+    college:{
+        type:String,
+        required:true
+    },
+    department:{
+        type:String,
+        required:true
+    },
+    image:{
+        type:String,
+        default:"student.gif"
+    },
     feedback_description:{
         type:String,
         required:true,
         unique:true
+    },
+    rating:{
+        type:Number,
+        required:true,
     },
     status:{
         type:String,

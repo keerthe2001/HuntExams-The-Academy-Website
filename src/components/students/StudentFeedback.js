@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 export default function StudentFeedback() {
-    const [credencials, setcredencials] = useState({name:"",feedback_description:""})
-    const host = "http://localhost:5000";
+    const [credencials, setcredencials] = useState({name:"",image:"",college:"",department:"",rating:"",feedback_description:""})
+    const host = process.env.REACT_APP_API_URL
     let Navigate = useNavigate();
     let errmsg = "";
     const handleFeedback = async (e)=>{
@@ -15,7 +15,7 @@ export default function StudentFeedback() {
                 "Content-Type":"application/json",
                 "auth-token": localStorage.getItem('token')
             },
-            body : JSON.stringify({"name":credencials.name,"feedback_description":credencials.feedback_description })
+            body : JSON.stringify({"name":credencials.name,"college":credencials.college,"department":credencials.department,"image":credencials.image,"rating":credencials.rating,"feedback_description":credencials.feedback_description })
           });
           const json = await response.json();
           console.log(json.authtoken)
@@ -60,9 +60,38 @@ export default function StudentFeedback() {
   </div>
 
   <div className="mb-3">
+    <label htmlFor="college" className="form-label fw-bold">College</label>
+    <input type="text" className="form-control" onChange={onChange} name='college' id="college" aria-describedby="nameHelp"/>
+  </div>
+
+  <div className="mb-3">
+    <label htmlFor="image" className="form-label fw-bold">Image</label>
+    <input type="text" className="form-control" onChange={onChange} name='image' id="image" aria-describedby="departmentHelp"/>
+  </div>
+
+  <div className="mb-3">
+    <label htmlFor="Department" className="form-label fw-bold">Department</label>
+    <input type="text" className="form-control" onChange={onChange} name='department' id="department" aria-describedby="departmentHelp"/>
+  </div>
+
+
+      <div class="form-group">
+        <label for="rating">Rating:</label>
+        <select class="form-control" id="rating" onChange={onChange} name="rating" required>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+
+  <div className="mb-3">
     <label htmlFor="feedback_description" className="form-label fw-bold">Your Feedback</label>
     <input type="text" className="form-control" onChange={onChange} name='feedback_description' id="feedback_description" aria-describedby="feedback_descriptionHelp"/>
   </div>
+
+      
 
   <div className='text-center'>
 

@@ -1,123 +1,133 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import './TestimonialCss.css';
 
 export default function Testimonials() {
-  let a = {
-    color: '#000',
-    backgroundColor: '#f3f2f2'
-}
+  const [feedbacks, setFeedbacks] = useState([]);
+  const [slider, setSlider] = useState(null);
+  const host = process.env.REACT_APP_API_URL;
+
+  useEffect(() => {
+    const fetchFeedbacks = async () => {
+      try {
+        const response = await fetch(`${host}/api/feedback/getfeedback`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'auth-token': localStorage.getItem('token'),
+          },
+        });
+        const data = await response.json();
+        setFeedbacks(data);
+      } catch (error) {
+        console.error('Error fetching feedbacks:', error);
+      }
+    };
+
+    fetchFeedbacks();
+  }, [host]);
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    variableWidth:true,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  const handlePrevClick = () => {
+    slider.slickPrev();
+  };
+
+  const handleNextClick = () => {
+    slider.slickNext();
+  };
+
+
+
   return (
     <>
-       
-  <section style={a} id="studentfeedbacks">
-  <div className="container py-5">
-    <div className="row d-flex justify-content-center">
-      <div className="col-md-10 col-xl-8 text-center">
-        <h3 className="fw-bold mb-4">Student Feedbacks</h3>
-        <p className="mb-4 pb-2 mb-md-5 pb-md-0">
-        In the words of our students, discover how our courses have made a positive impact on their lives and careers.Get inspired by their journeys, and join the ranks of learners who have achieved remarkable success through our educational programs.
-        </p>
-      </div>
-    </div>
+      <section id="studentfeedbacks">
+        <div className="container py-5">
+          <div className="row d-flex justify-content-center">
+            <div className="col-md-10 col-xl-8 text-center">
+              <h3 className="fw-bold mb-4">Student Feedbacks</h3>
+              <p className="mb-4 pb-2 mb-md-5 pb-md-0">
+                In the words of our students, discover how our courses have made a positive impact on their lives and careers. Get inspired by their journeys, and join the ranks of learners who have achieved remarkable success through our educational programs.
+              </p>
+            </div>
+          </div>
 
-    <div className="row text-center">
-      <div className="col-md-4 mb-4 mb-md-0 ">
-        <div className="card bg-white shadow">
-          <div className="card-body py-4 mt-2">
-            <div className="d-flex justify-content-center mb-4">
-            <img src="https://keerthe2001.github.io/HuntExams-The-Academy-Website/images2/f2.png"
-                className="rounded-circle shadow-1-strong" width="100" height="100" />
-            </div>
-            <h5 className="font-weight-bold">Pavithra G</h5>
-            <h6 className="font-weight-bold my-3">Bio Chemistry At <br/> Justice Basheer Ahmed Sayeed College For Women </h6>
-            <ul className="list-unstyled d-flex justify-content-center">
-              <li>
-                <i className="fas fa-star fa-sm text-info"></i>
-              </li>
-              <li>
-                <i className="fas fa-star fa-sm text-info"></i>
-              </li>
-              <li>
-                <i className="fas fa-star fa-sm text-info"></i>
-              </li>
-              <li>
-                <i className="fas fa-star fa-sm text-info"></i>
-              </li>
-              <li>
-                <i className="fas fa-star-half-alt fa-sm text-info"></i>
-              </li>
-            </ul>
-            <p className="mb-2">
-              <i className="fas fa-quote-left pe-2"></i>Thank you so  much for this amazing course , Literally I learned more."
-            </p>
+          <div className="text-center mt-3">
+            <button className="btn btn-primary me-2" onClick={handlePrevClick}>
+              Previous
+            </button>
+            <button className="btn btn-primary" onClick={handleNextClick}>
+              Next
+            </button>
           </div>
+
+          <Slider className='m-2' {...settings} ref={(slider) => setSlider(slider)}>
+            {feedbacks &&
+              feedbacks.feedbackList &&
+              feedbacks.feedbackList.map((feedback, index) => (
+                <div className='m-2'>
+                <div key={index} className="card bg-white shadow m-4" style={{width:'300px'}}>
+                  <div className="card-body py-4 mt-2">
+                    <div className="d-flex justify-content-center mb-4">
+                      <img
+                        src={`https://huntexams.000webhostapp.com/live-previews/images/${feedback.image}`}
+                        className="rounded-circle shadow-1-strong"
+                        width="100"
+                        height="100"
+                        alt={`Student ${index + 1}`}
+                      />
+                    </div>
+                    <h5 className="font-weight-bold text-center">{feedback.name}</h5>
+                    <h6 className="font-weight-bold my-3 text-center">{feedback.course} at <br /> {feedback.college}</h6>
+                    <ul className="text-center list-unstyled d-flex justify-content-center">
+                      {Array.from({ length: feedback.rating }, (_, i) => (
+                        <li key={i}>
+                          <i className="fas fa-star fa-sm text-info"></i>
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="text-center mb-2">
+                      <i className="fas fa-quote-left pe-2"></i>"{feedback.feedback_description}"
+                    </p>
+                  </div>
+                </div>
+                </div>
+              ))}
+          </Slider>
         </div>
-      </div>
-      <div className="col-md-4 mb-4 mb-md-0 ">
-        <div className="card shadow">
-          <div className="card-body py-4 mt-2">
-            <div className="d-flex justify-content-center mb-4">
-              <img src="https://keerthe2001.github.io/HuntExams-The-Academy-Website/images2/f1.png" className="rounded-circle shadow-1-strong" width="100" height="100" />
-            </div>
-            <h5 className="font-weight-bold">Nithya Shree K.M</h5>
-            <h6 className="font-weight-bold my-3">Bsc Computer Science at <br/> Shrimathi Devakunva nanalal Bhatt Vishnava College For Women</h6>
-            <ul className="list-unstyled d-flex justify-content-center">
-              <li>
-                <i className="fas fa-star fa-sm text-info"></i>
-              </li>
-              <li>
-                <i className="fas fa-star fa-sm text-info"></i>
-              </li>
-              <li>
-                <i className="fas fa-star fa-sm text-info"></i>
-              </li>
-              <li>
-                <i className="fas fa-star fa-sm text-info"></i>
-              </li>
-              <li>
-                <i className="fas fa-star fa-sm text-info"></i>
-              </li>
-            </ul>
-            <p className="mb-2">
-              <i className="fas fa-quote-left pe-2"></i>"The classes were clear and the doubts were clarified.The teacher was kind and his teaching was good."
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="col-md-4 mb-0 mb-md-0 ">
-        <div className="card shadow">
-          <div className="card-body py-4 mt-2">
-            <div className="d-flex justify-content-center mb-4">
-            <img src="https://keerthe2001.github.io/HuntExams-The-Academy-Website/images2/f3.png"
-                className="rounded-circle shadow-1-strong" width="100" height="100" />
-            </div>
-            <h5 className="font-weight-bold">Anagha. R</h5>
-            <h6 className="font-weight-bold my-3">Bsc computer Science <br/> Shrimathi Devkunvar Nanalal Bhatt Vaishnav College For Women</h6>
-            <ul className="list-unstyled d-flex justify-content-center">
-              <li>
-                <i className="fas fa-star fa-sm text-info"></i>
-              </li>
-              <li>
-                <i className="fas fa-star fa-sm text-info"></i>
-              </li>
-              <li>
-                <i className="fas fa-star fa-sm text-info"></i>
-              </li>
-              <li>
-                <i className="fas fa-star fa-sm text-info"></i>
-              </li>
-              <li>
-                <i className="far fa-star fa-sm text-info"></i>
-              </li>
-            </ul>
-            <p className="mb-2">
-              <i className="fas fa-quote-left pe-2"></i>"It's a good and best platform to learn courses, we can clearly understand"
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
     </>
-  )
+  );
 }

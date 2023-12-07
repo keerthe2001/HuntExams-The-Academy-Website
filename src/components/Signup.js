@@ -30,7 +30,7 @@ export default function Signup() {
     setcredencials({...credencials,[e.target.name]:e.target.value})
 }
   return (
-    <div className='container shadow p-3 w-50 mb-5'>
+    <div className='container shadow p-3 w-50 mb-5 mt-4'>
       <h2 className='text-center fw-bold'>SignUp Form</h2>
         <form method='post' onSubmit={handlesignup}>
   <div  className="mb-3">

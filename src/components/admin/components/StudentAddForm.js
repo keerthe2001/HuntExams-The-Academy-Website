@@ -116,7 +116,7 @@ export default function StudentAddForm() {
   }, []);
 
   let errmsg = "";
-  const host = "http://localhost:5000"
+  const host = process.env.REACT_APP_API_URL
 
   const handleAddStudent = async (e) => {
     e.preventDefault();

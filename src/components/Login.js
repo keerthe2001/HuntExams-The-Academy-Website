@@ -9,7 +9,7 @@ export default function Login() {
     let errmsg = "";
     const handleLogin = async (e)=>{
         e.preventDefault();
-
+try{
         const response =  await fetch(`${host}/api/auth/login`, {
             method: "POST",
             headers:{
@@ -44,13 +44,17 @@ export default function Login() {
                 }, 1500);
                 document.getElementById("error").innerText = errmsg
           }
+        }
+        catch(error){
+            alert(error.message)
+        }
     }
 
     const onChange = (e) =>{
         setcredencials({...credencials,[e.target.name]:e.target.value})
     }
     return (
-        <div className='container shadow p-3 w-50'>
+        <div className='container shadow p-3 w-50 mt-4'>
             <h2 className='text-center fw-bold'>Login</h2>
             <form onSubmit={handleLogin} method='post'>
                 <div className='text-danger' id="error">

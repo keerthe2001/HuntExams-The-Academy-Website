@@ -16,15 +16,17 @@ router.post('/feedback',fetchuser, [
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { name,feedback_description } = req.body;
+  const { name,college,image,department,rating,feedback_description } = req.body;
 
   try {
     // Create a new feedback instance
     const feedback = new Feedback({
       user: req.user.id, // Assuming you store the user ID in the auth middleware
         name:req.body.name,
+        college:req.body.college,
+        department:req.body.department,
+        rating:req.body.rating,
         feedback_description:req.body.feedback_description
-         
     });
 
     // Save the feedback to the database
@@ -38,7 +40,7 @@ router.post('/feedback',fetchuser, [
 });
 
 // Endpoint to get all feedback (admin-only, adjust as needed)
-router.get('/getfeedback',fetchuser, async (req, res) => {
+router.get('/getfeedback', async (req, res) => {
   try {
     // Check if the user is an admin (you may have a role field in your User model)
     // if (req.user.role !== 'admin') {
@@ -51,7 +53,7 @@ router.get('/getfeedback',fetchuser, async (req, res) => {
     const result = await res.json({ feedbackList });
   } catch (error) {
     console.error(error.message);
-    res.status(500).send('Server Error');
+    res.status(500).send(error.message);
   }
 });
 

@@ -23,7 +23,9 @@ const FeedbackState = (props) =>{
 }
 catch(error) {
     setfeedback(feedbackinitial)
-    console.error('Error fetching notes:', error.message);
+    // console.error('Error fetching notes:', error.message);
+    // json.status(500).send(error.message)
+    alert(error.message)
   }
   }
     return (
