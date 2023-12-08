@@ -11,6 +11,8 @@ const port = process.env.port || 5000
 
 app.use(express.json())
 //Available Routes
+
+
 app.use('/api/check',require('./routes/check'));
 app.use('/api/auth',require('./routes/auth'));
 app.use('/api/feedback',require('./routes/feedback'));
