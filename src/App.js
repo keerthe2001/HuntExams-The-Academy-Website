@@ -1,8 +1,5 @@
 import './App.css';
 import Navbar from './components/Navbar';
-
-
-
 import Footer from './components/Footer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
@@ -28,59 +25,56 @@ import AddQuestionForm from './components/Quiz/AddQuestionsForm';
 import Courses from './components/admin/Courses';
 
 function App() {
-  const [alert, setAlert] = useState({msg:"",Type:""});
+  const [alert, setAlert] = useState({ msg: "", Type: "" });
 
-  const showAlert = (message,type)=>{
+  const showAlert = (message, type) => {
     setAlert({
-      msg:message,
-      Type:type
-      });
+      msg: message,
+      Type: type
+    });
 
-      setTimeout(() => {
-        setAlert(null);
-      }, 1500);
+    setTimeout(() => {
+      setAlert(null);
+    }, 1500);
   }
 
   return (
     <>
-    <FeedbackState>
-      <StudentState>
-    <Router>
+      <FeedbackState>
+        <StudentState>
+          <Router>
 
-      <Navbar/>
-      <Alert alert={alert}/>
+            <Navbar />
+            <Alert alert={alert} />
 
-      <Routes>
-          <Route index exact path="/" element={<Home/>} />
-          <Route exact path="/login" element={<Login/>} />
-          <Route exact path="/trendingcourse" element={<Features/>} />
-          <Route showAlert={showAlert} exact path="/signup" element={<Signup/>} />
+            <Routes>
+              <Route index exact path="/" element={<Home />} />
+              <Route exact path="/login" element={<Login />} />
+              <Route exact path="/trendingcourse" element={<Features />} />
+              <Route showAlert={showAlert} exact path="/signup" element={<Signup />} />
+              <Route exact path="/admin/dashboard" element={<Dashboard />} />
+              <Route exact path="/admin/studentlist" element={<ManageStudents />} />
+              <Route exact path="/admin/addsettings" element={<SettingsForm />} />
+              <Route exact path="/admin/settings" element={<SettingsTable />} />
+              <Route exact path="/admin/studentfeedback" element={<ManageFeedbacks />} />
+              <Route exact path="/admin/addstudents" element={<AddStudent />} />
+              <Route exact path="/admin/addstudents/:id" element={<AddStudent />} />
+              <Route exact path="/admin/studentfeedbacks" element={<StudentFeedbacks />} />
+              <Route exact path="/admin/managemcq" element={<AddQuestionForm />} />
+              <Route exact path="/admin/viewmcq" element={<Neet2024mcq />} />
+              <Route exact path="/admin/addcourse" element={<Courses />} />
+              <Route exact path="/admin/courses" element={<Courses />} />
+              <Route exact path="/student/dashboard" element={<StudentDashboard />} />
+              <Route exact path="/student/feedback" element={<StudentFeedback />} />
+              <Route exact path="/exams/neet" element={<Neet />} />
+              <Route exact path="/mcqs" element={<Neet2024mcq />} />
+            </Routes>
 
-          <Route exact path="/admin/dashboard" element={<Dashboard/>} />
-          <Route exact path="/admin/studentlist" element={<ManageStudents/>} />
-          <Route exact path="/admin/addsettings" element={<SettingsForm/>} />
-          <Route exact path="/admin/settings" element={<SettingsTable/>} />
-          <Route exact path="/admin/studentfeedback" element={<ManageFeedbacks/>} />
-          <Route exact path="/admin/addstudents" element={<AddStudent/>} />
-          <Route exact path="/admin/addstudents/:id" element={<AddStudent/>} />
-          <Route exact path="/admin/studentfeedbacks" element={<StudentFeedbacks/>} />
-          <Route exact path="/admin/managemcq" element={<AddQuestionForm/>} />
-          <Route exact path="/admin/viewmcq" element={<Neet2024mcq/>} />
-          <Route exact path="/admin/addcourse" element={<Courses/>} />
-          <Route exact path="/admin/courses" element={<Courses/>} />
 
-
-          <Route exact path="/student/dashboard" element={<StudentDashboard/>} />
-          <Route exact path="/student/feedback" element={<StudentFeedback/>} />
-          <Route exact path="/exams/neet" element={<Neet/>} />
-          <Route exact path="/mcqs" element={<Neet2024mcq/>} />
-      </Routes>
-    
-      
-      <Footer/>
-        </Router>
+            <Footer />
+          </Router>
         </StudentState>
-        </FeedbackState>
+      </FeedbackState>
 
     </>
   );
