@@ -2,35 +2,54 @@ import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import './TestimonialCss.css';
 
 export default function Features() {
 
-  const [Courses, setCourses] = useState([]);
+  const [Courses, setCourses] = useState([{
+    categories: "Coding",
+    coursediscription: "Full stack development which is php and mysql",
+    coursename: "Full Stack Development",
+    date: "2023-12-07T14:52:58.489Z",
+    image: ""
+  },
+  {
+    categories: "Coding",
+    coursediscription: "Full stack development which is php and mysql",
+    coursename: "Full Stack Development",
+    date: "2023-12-07T14:52:58.489Z",
+    image: ""
+  },
+  {
+    categories: "Coding",
+    coursediscription: "Full stack development which is php and mysql",
+    coursename: "Full Stack Development",
+    date: "2023-12-07T14:52:58.489Z",
+    image: ""
+  }
+  ]);
   const [slider, setSlider] = useState(null);
 
   const host = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        const response = await fetch(`${host}/api/course/getcourse`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        const data = await response.json();
-        setCourses(data);
-      } catch (error) {
-        console.error('Error fetching courses:', error);
-      }
-    };
-
     fetchCourses();
-  }, [host]);
+  }, []);
 
-  console.log("hello",Courses.courseList)
+  const fetchCourses = async () => {
+    try {
+      const response = await fetch(`${host}/api/course/getcourse`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      console.log(data)
+      setCourses(data);
+    } catch (error) {
+      console.error('Error fetching courses:', error);
+    }
+  };
 
   const settings = {
     dots: false,
@@ -75,6 +94,7 @@ export default function Features() {
   return (
     <>
       <section>
+        {console.log("render")}
         <div className="album py-5 bg-light">
           <div className="container" id="trendingcourse" >
             <div className=" text-center">
@@ -85,22 +105,22 @@ export default function Features() {
             </div>
 
             <div className="text-center mt-3">
-              <button className="btn btn-primary me-2" onClick={handlePrevClick}>
+              <button className="btn btn-light mx-2 shadow-lg" onClick={handlePrevClick}>
                 Previous
               </button>
-              <button className="btn btn-primary" onClick={handleNextClick}>
+              <button className="btn btn-light mx1-2 shadow-lg" onClick={handleNextClick}>
                 Next
               </button>
             </div>
 
-              <div className='d-flex flex-row w-100' style={{overflow:"hidden"}}>
-            <Slider className='m-2' {...settings} ref={(slider) => setSlider(slider)}>
+            <div className='d-flex flex-row w-100 shadow-lg rounded' style={{ overflow: "hidden" }}>
+              <Slider className='m-2 ' {...settings} ref={(slider) => setSlider(slider)}>
 
                 {Courses &&
                   Courses.courseList &&
                   Courses.courseList.map((course, index) => (
                     <div className='m-4'>
-                    <div className="card shadow-sm m-2" style={{width:"300px"}} key={index}>
+                      <div className="card shadow-sm m-2" style={{ width: "300px" }} key={index}>
 
                         <img src='https://keerthe2001.github.io/HuntExams-The-Academy-Website/images2/css.jpg' alt=' ' />
 
@@ -115,10 +135,10 @@ export default function Features() {
                           </div>
                         </div>
                       </div>
-                      </div>
+                    </div>
                   ))}
               </Slider>
-              </div>
+            </div>
           </div>
         </div>
       </section>

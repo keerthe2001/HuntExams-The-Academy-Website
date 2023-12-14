@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
     const [credencials, setcredencials] = useState({email:"",password:""})
     const navigate = useNavigate();
-    const host = "http://localhost:5000";
+    const host = process.env.REACT_APP_API_URL
     let errmsg = "";
     const handleLogin = async (e)=>{
         e.preventDefault();
@@ -46,7 +46,7 @@ try{
           }
         }
         catch(error){
-            alert(error.message)
+                console.log(error.message)
         }
     }
 

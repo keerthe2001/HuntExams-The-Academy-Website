@@ -15,11 +15,11 @@ export default function Neet2024mcq() {
   const [submitted, setSubmitted] = useState(false);
   const [isCorrectAnswer, setIsCorrectAnswer] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  const host = process.env.REACT_APP_API_URL
   const fetchQuestions = async () => {
     setLoading(true)
     try {
-      const response = await fetch('http://localhost:5000/api/questions/getquestions');
+      const response = await fetch(`${host}/api/questions/getquestions`);
       const data = await response.json();
       setQuestions(data);
     }

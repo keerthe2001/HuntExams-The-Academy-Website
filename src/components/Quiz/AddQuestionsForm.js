@@ -8,7 +8,7 @@ const AddQuestionsForm = () => {
   const [correctAnswerIndex, setCorrectAnswerIndex] = useState(0);
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
-
+  const host = process.env.REACT_APP_API_URL
   const handleOptionChange = (index, value) => {
     const newOptions = [...options];
     newOptions[index] = value;
@@ -38,7 +38,7 @@ const AddQuestionsForm = () => {
     console.log('new question is', newQuestion);
 
     try {
-      const response = await fetch('http://localhost:5000/api/questions/addquestions', {
+      const response = await fetch(`${host}/api/questions/addquestions`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ const AddQuestionsForm = () => {
               dynamicTyping: true,
               complete: async (result) => {
                 try {
-                    const response = await fetch('http://localhost:5000/api/questions/addbulkquestions', {
+                    const response = await fetch(`${host}/api/questions/addbulkquestions`, {
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ const AddQuestionsForm = () => {
    
                // Save imported questions to MongoDB
                try {
-                 const response = await fetch('http://localhost:5000/api/questions/addbulkquestions', {
+                 const response = await fetch(`${host}/api/questions/addbulkquestions`, {
                    method: 'POST',
                    headers: {
                      'Content-Type': 'application/json',

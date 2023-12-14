@@ -8,7 +8,7 @@ const StudentState = (props) => {
     const [settings, setSettings] = useState([]);
 
     const [students, setstudents] = useState(studentslist);
-    const host = "http://localhost:5000";
+    const host = process.env.REACT_APP_API_URL
 
     useEffect(() => {
         handleStudentget();
@@ -29,8 +29,7 @@ const StudentState = (props) => {
         }
         catch (error) {
             setstudents(studentslist)
-            // console.error('Error fetching notes:', error.message);
-            alert(error.message)
+            console.error('Error fetching notes:', error.message);
 
         }
     }

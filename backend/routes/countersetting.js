@@ -35,7 +35,7 @@ router.get('/countersetting', async (req, res) => {
 });
 
 // Update Counter Settings
-router.put('/countersetting/:id',fetchuser, async (req, res) => {
+router.put('/countersetting/:id', async (req, res) => {
     try {
         const updatedCounterSetting = await Settings.findByIdAndUpdate(
             req.params.id,

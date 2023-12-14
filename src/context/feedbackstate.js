@@ -8,7 +8,7 @@ const FeedbackState = (props) =>{
  }, [])
     const feedbackinitial = [];
     const [feedback, setfeedback] = useState(feedbackinitial);
-    const host = "http://localhost:5000";
+    const host = process.env.REACT_APP_API_URL
     const handleFeedbackget = async () =>{
         try{
     const response =  await fetch(`${host}/api/feedback/getfeedback`, {
@@ -23,9 +23,8 @@ const FeedbackState = (props) =>{
 }
 catch(error) {
     setfeedback(feedbackinitial)
-    // console.error('Error fetching notes:', error.message);
+    console.error('Error fetching notes:', error.message);
     // json.status(500).send(error.message)
-    alert(error.message)
   }
   }
     return (

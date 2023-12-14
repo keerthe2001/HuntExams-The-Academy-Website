@@ -6,7 +6,7 @@ export default function Signup() {
     const [credencials, setcredencials] = useState({name:"",email:"",role:"",mobile:"",password:"",cpassword:""});
 
     const navigate = useNavigate();
-    const host = "http://localhost:5000";
+    const host = process.env.REACT_APP_API_URL
    const handlesignup = async(e) =>{
     e.preventDefault();
     const response =  await fetch(`${host}/api/auth/createUser`, {

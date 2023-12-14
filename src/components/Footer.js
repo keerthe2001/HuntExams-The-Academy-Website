@@ -17,7 +17,6 @@ export default function Footer() {
           <li className="nav-item mb-2"><Link to="/about" className="nav-link p-0 text-muted">About</Link></li>
         </ul>
       </div>
-
       <div className="col-2">
         <h5 className='fw-bold'>Exams</h5>
         <ul className="nav flex-column">

@@ -6,7 +6,7 @@ const router = express.Router();
 
 
 // Endpoint to submit feedback
-router.post('/feedback',fetchuser, [
+router.post('/feedback', [
    // Authentication middleware to ensure the user is logged in
   body('name', 'Feedback message is required').notEmpty(),
   body('feedback_description', 'Feedback message is required').notEmpty(),
@@ -21,7 +21,7 @@ router.post('/feedback',fetchuser, [
   try {
     // Create a new feedback instance
     const feedback = new Feedback({
-      user: req.user.id, // Assuming you store the user ID in the auth middleware
+      // user: req.user.id, // Assuming you store the user ID in the auth middleware
         name:req.body.name,
         college:req.body.college,
         department:req.body.department,
@@ -49,8 +49,8 @@ router.get('/getfeedback', async (req, res) => {
 
     // Fetch all feedback from the database
     const feedbackList = await Feedback.find().populate('user', ['name', 'email']);
+    res.json(feedbackList);
 
-    const result = await res.json({ feedbackList });
   } catch (error) {
     console.error(error.message);
     res.status(500).send(error.message);
