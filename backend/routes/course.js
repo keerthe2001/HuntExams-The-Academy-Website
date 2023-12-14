@@ -40,6 +40,7 @@ router.get('/getcourse', async (req, res) => {
     const courseList = await Courses.find();
     res.json(courseList);
 
+const result = await res.json({ courseList });
   } catch (error) {
     console.error(error.message);
     res.status(500).send(error.message);
