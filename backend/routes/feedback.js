@@ -21,7 +21,7 @@ router.post('/feedback', [
   try {
     // Create a new feedback instance
     const feedback = new Feedback({
-      // user: req.user.id, // Assuming you store the user ID in the auth middleware
+      user: req.user.id, // Assuming you store the user ID in the auth middleware
         name:req.body.name,
         college:req.body.college,
         department:req.body.department,
@@ -49,9 +49,9 @@ router.get('/getfeedback', async (req, res) => {
 
     // Fetch all feedback from the database
     const feedbackList = await Feedback.find().populate('user', ['name', 'email']);
-    res.json(feedbackList);
 
-const result = await res.json({ feedbackList });
+    res.json({ feedbackList });
+
   } catch (error) {
     console.error(error.message);
     res.status(500).send(error.message);
