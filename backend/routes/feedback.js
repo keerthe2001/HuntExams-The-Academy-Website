@@ -6,11 +6,7 @@ const router = express.Router();
 
 
 // Endpoint to submit feedback
-router.post('/feedback', [
-   // Authentication middleware to ensure the user is logged in
-  body('name', 'Feedback message is required').notEmpty(),
-  body('feedback_description', 'Feedback message is required').notEmpty(),
-], async (req, res) => {
+router.post('/feedback', async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
