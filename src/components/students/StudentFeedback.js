@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function StudentFeedback() {
     const [credencials, setcredencials] = useState({name:"",image:"",college:"",department:"",rating:"",feedback_description:""})
+    
     const host = process.env.REACT_APP_API_URL
     let Navigate = useNavigate();
     let errmsg = "";

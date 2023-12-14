@@ -21,7 +21,7 @@ router.post('/feedback', [
   try {
     // Create a new feedback instance
     const feedback = new Feedback({
-      user: req.user.id, // Assuming you store the user ID in the auth middleware
+      // user: req.user.id, // Assuming you store the user ID in the auth middleware
         name:req.body.name,
         college:req.body.college,
         department:req.body.department,
@@ -35,7 +35,7 @@ router.post('/feedback', [
     res.json({ message: 'Feedback submitted successfully',success:true });
   } catch (error) {
     console.error(error.message);
-    res.status(500).json({error:'Server Error'});
+    res.status(500).json({error:error.message});
   }
 });
 
