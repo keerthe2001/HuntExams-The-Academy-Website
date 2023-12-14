@@ -51,6 +51,7 @@ router.get('/getfeedback', async (req, res) => {
     const feedbackList = await Feedback.find().populate('user', ['name', 'email']);
     res.json(feedbackList);
 
+const result = await res.json({ feedbackList });
   } catch (error) {
     console.error(error.message);
     res.status(500).send(error.message);
