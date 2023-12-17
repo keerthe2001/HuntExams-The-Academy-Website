@@ -2,31 +2,30 @@ import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
 export default function Features() {
 
-  const [Courses, setCourses] = useState([{
+  const [Courses, setCourses] = useState({Courses:[{
     categories: "Coding",
-    coursediscription: "Full stack development which is php and mysql",
-    coursename: "Full Stack Development",
+    coursediscription: "Master PHP and MySQL for dynamic web development. Learn to create interactive websites and manage data efficiently.",
+    coursename: "Backend Development",
     date: "2023-12-07T14:52:58.489Z",
     image: ""
   },
   {
     categories: "Coding",
-    coursediscription: "Full stack development which is php and mysql",
-    coursename: "Full Stack Development",
+    coursediscription: "Craft responsive, dynamic websites from scratch with our HTML, CSS, and JavaScript course.",
+    coursename: "Frontend Development",
     date: "2023-12-07T14:52:58.489Z",
     image: ""
   },
   {
     categories: "Coding",
-    coursediscription: "Full stack development which is php and mysql",
+    coursediscription: "Master the full web development stack! From front-end design using HTML, CSS, JS, and Bootstrap to back-end functionality with PHP and MySQL. Build robust, responsive websites end-to-end.",
     coursename: "Full Stack Development",
     date: "2023-12-07T14:52:58.489Z",
     image: ""
   }
-  ]);
+  ]});
   const [slider, setSlider] = useState(null);
 
   const host = process.env.REACT_APP_API_URL;
@@ -116,9 +115,8 @@ export default function Features() {
             <div className='d-flex flex-row w-100 shadow-lg rounded' style={{ overflow: "hidden" }}>
               <Slider className='m-2 ' {...settings} ref={(slider) => setSlider(slider)}>
 
-                {Courses &&
-                  Courses.courseList &&
-                  Courses.courseList.map((course, index) => (
+                {Courses && Courses.Courses &&
+                 Courses.Courses.map((course, index) => (
                     <div className='m-4'>
                       <div className="card shadow-sm m-2" style={{ width: "300px" }} key={index}>
 
