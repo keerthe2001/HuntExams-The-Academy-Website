@@ -4,7 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 export default function Features() {
 
-  const [Courses, setCourses] = useState({Courses:[{
+  const [CourseAvail, setCourseAvail] = useState({ Course:[{
     categories: "Coding",
     coursediscription: "Master PHP and MySQL for dynamic web development. Learn to create interactive websites and manage data efficiently.",
     coursename: "Backend Development",
@@ -26,15 +26,7 @@ export default function Features() {
     image: ""
   }
   ]});
-  const [slider, setSlider] = useState(null);
-
-  const host = process.env.REACT_APP_API_URL;
-
-  useEffect(() => {
-    fetchCourses();
-  }, []);
-
-  const fetchCourses = async () => {
+  const fetchCourse = async () => {
     try {
       const response = await fetch(`${host}/api/course/getcourse`, {
         method: 'GET',
@@ -43,13 +35,22 @@ export default function Features() {
         },
       });
       const data = await response.json();
-      console.log(data)
-      setCourses(data);
+      setCourseAvail(data);
     } catch (error) {
-      console.error('Error fetching courses:', error);
+      console.error('Error fetching Course:', error);
     }
   };
 
+  const [slider, setSlider] = useState(null);
+
+  const host = process.env.REACT_APP_API_URL;
+
+  useEffect(() => {
+    fetchCourse();
+  }, []);
+
+  console.log(CourseAvail && CourseAvail.Course && CourseAvail.Course)
+ 
   const settings = {
     dots: false,
     infinite: true,
@@ -97,9 +98,9 @@ export default function Features() {
         <div className="album py-5 bg-light">
           <div className="container" id="trendingcourse" >
             <div className=" text-center">
-              <h3 className="fw-bold mb-4">Trending Courses</h3>
+              <h3 className="fw-bold mb-4">Trending Course</h3>
               <p className="mb-4 pb-2 mb-md-5 pb-md-0">
-                Discover the pulse of the job market with our 'Top 3 Trending Courses' collection. These courses are meticulously selected to align with the hottest skills and knowledge areas in demand today. Whether you're a career enthusiast, aspiring professional, or lifelong learner, our trending courses offer the perfect gateway to stay relevant and competitive. Dive into these sought-after subjects, led by industry experts, and set yourself on the path to success in a rapidly changing world.
+                Discover the pulse of the job market with our 'Top 3 Trending Course' collection. These Course are meticulously selected to align with the hottest skills and knowledge areas in demand today. Whether you're a career enthusiast, aspiring professional, or lifelong learner, our trending Course offer the perfect gateway to stay relevant and competitive. Dive into these sought-after subjects, led by industry experts, and set yourself on the path to success in a rapidly changing world.
               </p>
             </div>
 
@@ -115,15 +116,15 @@ export default function Features() {
             <div className='d-flex flex-row w-100 shadow-lg rounded' style={{ overflow: "hidden" }}>
               <Slider className='m-2 ' {...settings} ref={(slider) => setSlider(slider)}>
 
-                {Courses && Courses.Courses &&
-                 Courses.Courses.map((course, index) => (
+                {CourseAvail && CourseAvail.Course &&
+                 CourseAvail.Course.map((settingcourse, index) => (
                     <div className='m-4'>
                       <div className="card shadow-sm m-2" style={{ width: "300px" }} key={index}>
 
                         <img src='https://keerthe2001.github.io/HuntExams-The-Academy-Website/images2/css.jpg' alt=' ' />
 
                         <div className="card-body">
-                          <p className="card-text">{course.coursediscription}</p>
+                          <p className="card-text">{settingcourse.coursediscription}</p>
 
                           <div className="d-flex justify-content-between align-items-center">
                             <div className="btn-group">

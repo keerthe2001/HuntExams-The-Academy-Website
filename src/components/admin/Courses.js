@@ -1,57 +1,100 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { Button, Table } from 'react-bootstrap';
 
 export default function Courses() {
-    const [credencials, setcredencials] = useState({coursename:"",coursediscription:"",image:"",categories:""})
-    const host = process.env.REACT_APP_API_URL
-    let Navigate = useNavigate();
-    let errmsg = "";
-    const handleCourse = async (e)=>{
-        e.preventDefault();
+  const [credencials, setcredencials] = useState({
+    coursename: "",
+    coursediscription: "",
+    image: "",
+    categories: "",
+  });
+  const [editingCourseId, setEditingCourseId] = useState(null); // Add this state
+  const host = process.env.REACT_APP_API_URL;
+  let Navigate = useNavigate();
+  let errmsg = "";
 
-        const response =  await fetch(`${host}/api/course/addcourse`, {
-            method: "POST",
-            headers:{
-                "Content-Type":"application/json",
-                "auth-token": localStorage.getItem('token')
-            },
-            body : JSON.stringify({"coursename":credencials.coursename,"coursediscription":credencials.coursediscription,"categories":credencials.categories,"image":credencials.image })
-          });
-          const json = await response.json();
-          console.log(json.authtoken)
-          if(json.success)
-          {
-            errmsg = json.message
-            setTimeout(() => {
-                document.getElementById("success").innerText = "";
-              }, 1500);
-              document.getElementById("success").innerText = errmsg
-              setTimeout(() => {
-                Navigate('/admin/courses');
-              }, 2000);
-          }
-          else if(json.error){
-              errmsg = json.error
-              setTimeout(() => {
-                  document.getElementById("error").innerText = "";
-                }, 1500);
-                document.getElementById("error").innerText = errmsg
+  const handleCourse = async (e) => {
+    e.preventDefault();
 
-                setTimeout(() => {
-                  Navigate('/admin/addcourse');
-                }, 2000);
-          }
+    const endpoint = editingCourseId
+      ? `${host}/api/course/editcourse/${editingCourseId}`
+      : `${host}/api/course/addcourse`;
 
+    const method = editingCourseId ? "PUT" : "POST";
+
+    const response = await fetch(endpoint, {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        coursename: credencials.coursename,
+        coursediscription: credencials.coursediscription,
+        categories: credencials.categories,
+        image: credencials.image,
+      }),
+    });
+
+    const json = await response.json();
+    console.log(json.authtoken);
+    if (json.success) {
+      errmsg = json.message;
+      setTimeout(() => {
+        document.getElementById("success").innerText = "";
+      }, 1500);
+      document.getElementById("success").innerText = errmsg;
+      setTimeout(() => {
+        Navigate("/admin/courses");
+      }, 2000);
+    } else if (json.error) {
+      errmsg = json.error;
+      setTimeout(() => {
+        document.getElementById("error").innerText = "";
+      }, 1500);
+      document.getElementById("error").innerText = errmsg;
+
+      setTimeout(() => {
+        Navigate("/admin/addcourse");
+      }, 2000);
     }
+  };
 
-    const onChange = (e) =>{
-        setcredencials({...credencials,[e.target.name]:e.target.value})
+  const onChange = (e) => {
+    setcredencials({ ...credencials, [e.target.name]: e.target.value });
+  };
+
+  const loadCourseForEditing = async (courseId) => {
+    // Fetch course details based on courseId and set the values in the form
+    const response = await fetch(`${host}/api/course/getcourse/${courseId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token"),
+      },
+    });
+
+    const json = await response.json();
+    if (json.success) {
+      const course = json.course;
+      setcredencials({
+        coursename: course.coursename,
+        coursediscription: course.coursediscription,
+        image: course.image,
+        categories: course.categories,
+      });
+      setEditingCourseId(courseId);
+    } else {
+      // Handle error while fetching course details
     }
+  };
+
   return (
     <div>
-        <div className='container shadow my-5 p-3'>
-    <h2 className='text-center'>Course Form</h2>
-<form onSubmit={handleCourse} method='post'>
+      <div className="container shadow my-5 p-3">
+        <h2 className="text-center">Course Form</h2>
+        <form onSubmit={handleCourse} method="post">
 <div className=' text-success' id='success'></div>
     <div className=' text-danger' id='error'></div>
   <div className="mb-3">
@@ -78,13 +121,16 @@ export default function Courses() {
      
       
 
-  <div className='text-center'>
-
-  <button type="submit" className="btn btn-primary">Submit Courses</button>
-
-  </div>
-</form>
-    </div>
+  <div className="text-center">
+            <Button
+              variant="btn border-3 border-light text-light"
+              type="submit" // Changed from type="button" to type="submit"
+            >
+              {editingCourseId ? "Update Course" : "Add Course"}
+            </Button>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

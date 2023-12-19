@@ -23,6 +23,7 @@ import Neet from './components/Exams/Neet';
 import Neet2024mcq from './components/Quiz/Neet2024mcq';
 import AddQuestionForm from './components/Quiz/AddQuestionsForm';
 import Courses from './components/admin/Courses';
+import CoursesList from './components/admin/CoursesList';
 
 function App() {
   const [alert, setAlert] = useState({ msg: "", Type: "" });
@@ -63,7 +64,7 @@ function App() {
               <Route exact path="/admin/managemcq" element={<AddQuestionForm />} />
               <Route exact path="/admin/viewmcq" element={<Neet2024mcq />} />
               <Route exact path="/admin/addcourse" element={<Courses />} />
-              <Route exact path="/admin/courses" element={<Courses />} />
+              <Route exact path="/admin/courses" element={<CoursesList />} />
               <Route exact path="/student/dashboard" element={<StudentDashboard />} />
               <Route exact path="/student/feedback" element={<StudentFeedback />} />
               <Route exact path="/exams/neet" element={<Neet />} />

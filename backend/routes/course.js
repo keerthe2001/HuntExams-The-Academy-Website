@@ -1,16 +1,16 @@
 const express = require('express');
 const { body, validationResult } = require('express-validator');
-const Courses = require('../Models/Courses'); // Import your Feedback model
+const Courses = require('../Models/Courses'); // Import your Course model
 const fetchuser = require('../Middleware/fetchuser');
 const router = express.Router();
 
 
-// Endpoint to submit feedback
+// Endpoint to submit course
 router.post('/addcourse', async (req, res) => {
   const { coursename,coursediscription,image,categories} = req.body;
 
   try {
-    // Create a new feedback instance
+    // Create a new course instance
     const course = new Courses({
       coursename:req.body.coursename,
       coursediscription:req.body.coursediscription,
@@ -18,7 +18,7 @@ router.post('/addcourse', async (req, res) => {
       categories:req.body.categories,
     });
 
-    // Save the feedback to the database
+    // Save the course to the database
     await course.save();
 
     res.json({ message: 'Course Added successfully',success:true });
@@ -28,7 +28,7 @@ router.post('/addcourse', async (req, res) => {
   }
 });
 
-// Endpoint to get all feedback (admin-only, adjust as needed)
+// Endpoint to get all course (admin-only, adjust as needed)
 router.get('/getcourse', async (req, res) => {
   try {
     // Check if the user is an admin (you may have a role field in your User model)
@@ -36,9 +36,9 @@ router.get('/getcourse', async (req, res) => {
     //   return res.status(403).json({ error: 'Unauthorized' });
     // }
 
-    // Fetch all feedback from the database
-    const courseList = await Courses.find();
-     res.json({ Courses });
+    // Fetch all course from the database
+    const Course = await Courses.find();
+     res.json({ Course });
   } catch (error) {
     console.error(error.message);
     res.status(500).send(error.message);
@@ -46,33 +46,27 @@ router.get('/getcourse', async (req, res) => {
 });
 
 
-// Update status to 1 for a specific feedback by ID
+// Update status to 1 for a specific course by ID
 router.put('/:id', async (req, res) => {
   try {
-    const feedbackId = req.params.id;
+    const courseId = req.params.id;
     console.log(req.body)
     const {statusid} = req.body
-    // Find the feedback by ID and update the status to 1
-    let updatedFeedback = null;
-    if(statusid == '0' ){
-      updatedFeedback = await Feedback.findByIdAndUpdate(
-      feedbackId,
-      { $set: { status: 1 } },
-      { new: true } // To return the updated feedback
-    );
-    }else{
-      updatedFeedback = await Feedback.findByIdAndUpdate(
-        feedbackId,
-        { $set: { status: 0 } },
-        { new: true } // To return the updated feedback
+    // Find the course by ID and update the status to 1
+    let updatedCourse = null;
+   
+      updatedCourse = await Courses.findByIdAndUpdate(
+        courseId,
+        { $set: req.body },
+        { new: true } // To return the updated course
       );
+    
+
+    if (!updatedCourse) {
+      return res.status(404).json({ error: 'Course not found' });
     }
 
-    if (!updatedFeedback) {
-      return res.status(404).json({ error: 'Feedback not found' });
-    }
-
-    res.json(updatedFeedback);
+    res.json(updatedCourse);
 
   } catch (error) {
     console.error(error.message);
