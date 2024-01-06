@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function StudentTable() {
   let Navigate = useNavigate();
-
+  const host = process.env.REACT_APP_API_URL;
   const context = useContext(StudentContext);
   const { students, handleStudentget } = context;
   
@@ -16,11 +16,30 @@ export default function StudentTable() {
   }, []);
   console.log("this os",students[0]);
 
-  const handleDeleteStudent = (studentId) => {
-    // Implement logic to delete student from MongoDB
-    // const updatedStudents = students.filter((student) => student._id !== studentId);
-    // setStudents(updatedStudents);
+  const handleDeleteStudent = async (studentId) => {
+    try {
+      // Assuming your API endpoint for deleting a student is something like '/api/students/:id'
+      const response = await fetch(`${host}/api/student/${studentId}`, {
+          method: 'DELETE',
+          headers: {
+              'Content-Type': 'application/json',
+              "auth-token": localStorage.getItem('token')
+            },
+      });
+
+      // Check if the request was successful (status code 200-299)
+      if (response.ok) {
+        handleStudentget();
+      } else {
+          // Handle errors, for example, log them to the console
+          console.error(`Failed to delete student. Status: ${response.status}`);
+      }
+
+  } catch (error) {
+      console.error(error);
+  }
   };
+ 
   const handleEditStudent = async (studentId) => {
     try {
         let id = studentId;

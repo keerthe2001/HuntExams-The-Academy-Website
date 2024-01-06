@@ -7,13 +7,13 @@ const router = express.Router();
 
 // Endpoint to submit course
 router.post('/addcourse', async (req, res) => {
-  const { coursename,coursediscription,image,categories} = req.body;
+  const { coursename,coursedescription,image,categories} = req.body;
 
   try {
     // Create a new course instance
     const course = new Courses({
       coursename:req.body.coursename,
-      coursediscription:req.body.coursediscription,
+      coursedescription:req.body.coursedescription,
       image:req.body.image,
       categories:req.body.categories,
     });
@@ -35,7 +35,6 @@ router.get('/getcourse', async (req, res) => {
     // if (req.user.role !== 'admin') {
     //   return res.status(403).json({ error: 'Unauthorized' });
     // }
-
     // Fetch all course from the database
     const Course = await Courses.find();
      res.json({ Course });
@@ -44,7 +43,6 @@ router.get('/getcourse', async (req, res) => {
     res.status(500).send(error.message);
   }
 });
-
 
 // Update status to 1 for a specific course by ID
 router.put('/:id', async (req, res) => {
@@ -62,7 +60,8 @@ router.put('/:id', async (req, res) => {
       );
     
 
-    if (!updatedCourse) {
+    if (!updatedCourse)
+    {
       return res.status(404).json({ error: 'Course not found' });
     }
 
@@ -71,6 +70,23 @@ router.put('/:id', async (req, res) => {
   } catch (error) {
     console.error(error.message);
     res.status(500).send(error.message);
+  }
+});
+
+// Delete Course
+router.delete('/:id', fetchuser, async (req, res) => {
+  try {
+      const CourseId = req.params.id;
+      const deletedCourse = await Courses.findByIdAndDelete(CourseId);
+
+      if (!deletedCourse) {
+          return res.status(404).json({ error: 'Course not found' });
+      }
+
+      res.json(deletedCourse);
+  } catch (error) {
+      console.error(error.message);
+      res.status(500).send(error.message);
   }
 });
 

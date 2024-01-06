@@ -2,28 +2,40 @@ import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-export default function Features() {
+import Frontend from './images/Frontend.jpg';
+import Backend from './images/backend.jpg';
+import Fullstack from './images/Fullstack.jpg';
+import { Link, useNavigate } from 'react-router-dom';
 
+export default function Features() {
+  const Navigate = useNavigate();
+  let GForm = "https://forms.gle/VBRCBnHx7EwQSaiG7";
   const [CourseAvail, setCourseAvail] = useState({ Course:[{
     categories: "Coding",
+    coursename: "Backend Development",
     coursediscription: "Master PHP and MySQL for dynamic web development. Learn to create interactive websites and manage data efficiently.",
     coursename: "Backend Development",
+    registrationlink: GForm,
     date: "2023-12-07T14:52:58.489Z",
-    image: ""
+    image: Backend
   },
   {
     categories: "Coding",
-    coursediscription: "Craft responsive, dynamic websites from scratch with our HTML, CSS, and JavaScript course.",
     coursename: "Frontend Development",
+    coursediscription: "Craft responsive, dynamic websites from scratch with our HTML, CSS along with bootstrap, and JavaScript course.",
+    coursename: "Frontend Development",
+    registrationlink: GForm,
     date: "2023-12-07T14:52:58.489Z",
-    image: ""
+    image: Frontend
   },
   {
     categories: "Coding",
-    coursediscription: "Master the full web development stack! From front-end design using HTML, CSS, JS, and Bootstrap to back-end functionality with PHP and MySQL. Build robust, responsive websites end-to-end.",
     coursename: "Full Stack Development",
+    coursediscription: "Master the front-end design using HTML, CSS, JS, and Bootstrap to back-end functionality with PHP and MySQL.",
+    coursename: "Full Stack Development",
+    registrationlink: GForm,
     date: "2023-12-07T14:52:58.489Z",
-    image: ""
+    image: Fullstack
   }
   ]});
   const fetchCourse = async () => {
@@ -35,7 +47,7 @@ export default function Features() {
         },
       });
       const data = await response.json();
-      setCourseAvail(data);
+      // setCourseAvail(data);
     } catch (error) {
       console.error('Error fetching Course:', error);
     }
@@ -87,6 +99,7 @@ export default function Features() {
     slider.slickPrev();
   };
 
+
   const handleNextClick = () => {
     slider.slickNext();
   };
@@ -121,16 +134,17 @@ export default function Features() {
                     <div className='m-4'>
                       <div className="card shadow-sm m-2" style={{ width: "300px" }} key={index}>
 
-                        <img src='https://keerthe2001.github.io/HuntExams-The-Academy-Website/images2/css.jpg' alt=' ' />
+                        <img src={settingcourse.image} alt=' ' />
 
                         <div className="card-body">
+                          <h5 className="card-text fw-bold text-center">{settingcourse.coursename}</h5>
                           <p className="card-text">{settingcourse.coursediscription}</p>
 
                           <div className="d-flex justify-content-between align-items-center">
-                            <div className="btn-group">
-                              <button type="button" className="btn btn-sm btn-outline-secondary py-2 px-4">Explore</button>
+                            <div className="text-center" >
+                              <Link to={settingcourse.registrationlink} target='_blank'> <button type="button"  className="btn btn-sm btn-outline-secondary text-light btn-primary py-2 px-4">Register Now</button></Link>
                             </div>
-                            <small className="text-muted">9 mins</small>
+                            {/* <small className="text-muted">9 mins</small> */}
                           </div>
                         </div>
                       </div>

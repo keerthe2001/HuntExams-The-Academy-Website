@@ -7,7 +7,7 @@ const CourseSchema = new Schema({
         required:true,
 
     },
-    coursediscription:{
+    coursedescription:{
         type:String,
         required:true,
 

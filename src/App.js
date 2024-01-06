@@ -60,6 +60,7 @@ function App() {
               <Route exact path="/admin/studentfeedback" element={<ManageFeedbacks />} />
               <Route exact path="/admin/addstudents" element={<AddStudent />} />
               <Route exact path="/admin/addstudents/:id" element={<AddStudent />} />
+              <Route exact path="/admin/addcourse/:id" element={<Courses />} />
               <Route exact path="/admin/studentfeedbacks" element={<StudentFeedbacks />} />
               <Route exact path="/admin/managemcq" element={<AddQuestionForm />} />
               <Route exact path="/admin/viewmcq" element={<Neet2024mcq />} />

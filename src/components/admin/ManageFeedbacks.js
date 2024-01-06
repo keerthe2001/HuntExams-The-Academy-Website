@@ -20,6 +20,35 @@ export default function ManageFeedbacks() {
 
     }, [])
     const host = process.env.REACT_APP_API_URL
+
+    const handleDeleteFeedback = async (feedbackId) => {
+      
+        try {
+            // Send a PUT request to update the status to 1 for the specific feedback
+            const response = await fetch(`${host}/api/feedback/${feedbackId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "auth-token": localStorage.getItem('token')
+
+                },
+            });
+            // Check if the request was successful
+            if (response.ok) {
+                
+                handleFeedbackget();
+
+            } else {
+                console.error('Failed to delete feedback');
+            }
+        } catch (error) {
+            console.error('Error Deleting feedback:', error.message);
+        } finally {
+            // setTimeout(() => {
+            //     setLoading(false);
+            // }, 500);
+        }
+    }
     const handleApprove = async (feedbackId, status) => {
         setLoading(true);
         const statusid = status;
@@ -51,7 +80,7 @@ export default function ManageFeedbacks() {
             }, 500);
         }
     }
-    console.log(localStorage.getItem('token') && feedback && feedback[0] && feedback[0].feedbackList && feedback[0].feedbackList[0].name);
+    // console.log(localStorage.getItem('token') && feedback && feedback[0] && feedback[0].feedbackList && feedback[0].feedbackList[0].name);
     return (
         <>
 
@@ -82,7 +111,7 @@ export default function ManageFeedbacks() {
                     <tbody className='text-center'>
                         {localStorage.getItem('token') &&
                             feedback &&
-                            feedback[0] &&
+                            feedback[0] && feedback[0].feedbackList &&
                             feedback[0].feedbackList ? (
                             feedback[0].feedbackList.map((feedbackItem, index) => (
                                 <tr key={index} >
@@ -104,13 +133,13 @@ export default function ManageFeedbacks() {
                                     </td>
 
                                     <td>
-                                        <Button variant="btn btn-sm btn-warning" >
+                                        {/* <Button variant="btn btn-sm btn-warning" onClick={() => { handleEdit(feedbackItem._id) }}>
                                             Edit
-                                        </Button>
+                                        </Button> */}
                                     </td>
 
                                     <td>
-                                        <Button variant="btn btn-sm btn-danger" >
+                                        <Button variant="btn btn-sm btn-danger" onClick={() => { handleDeleteFeedback(feedbackItem._id) }}>
                                             Delete
                                         </Button></td>
                                 </tr>

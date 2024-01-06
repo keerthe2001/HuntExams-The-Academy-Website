@@ -1,24 +1,32 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { Button, Table } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 export default function Courses() {
-  const [credencials, setcredencials] = useState({
+  const [credentials, setCredentials] = useState({
     coursename: "",
-    coursediscription: "",
+    coursedescription: "",
     image: "",
     categories: "",
   });
-  const [editingCourseId, setEditingCourseId] = useState(null); // Add this state
+
+  const [editingCourseId, setEditingCourseId] = useState(null);
   const host = process.env.REACT_APP_API_URL;
-  let Navigate = useNavigate();
-  let errmsg = "";
+  const navigate = useNavigate();
+  const { id } = useParams(); // Extract courseId from URL params
+
+  useEffect(() => {
+    // Load course details for editing when component mounts
+    if (id) {
+      loadCourseForEditing(id);
+    }
+  }, [id]);
 
   const handleCourse = async (e) => {
     e.preventDefault();
 
     const endpoint = editingCourseId
-      ? `${host}/api/course/editcourse/${editingCourseId}`
+      ? `${host}/api/course/addcourse/${editingCourseId}`
       : `${host}/api/course/addcourse`;
 
     const method = editingCourseId ? "PUT" : "POST";
@@ -30,43 +38,28 @@ export default function Courses() {
         "auth-token": localStorage.getItem("token"),
       },
       body: JSON.stringify({
-        coursename: credencials.coursename,
-        coursediscription: credencials.coursediscription,
-        categories: credencials.categories,
-        image: credencials.image,
+        coursename: credentials.coursename,
+        coursedescription: credentials.coursedescription,
+        categories: credentials.categories,
+        image: credentials.image,
       }),
     });
 
     const json = await response.json();
-    console.log(json.authtoken);
     if (json.success) {
-      errmsg = json.message;
-      setTimeout(() => {
-        document.getElementById("success").innerText = "";
-      }, 1500);
-      document.getElementById("success").innerText = errmsg;
-      setTimeout(() => {
-        Navigate("/admin/courses");
-      }, 2000);
+      // Handle success
+      navigate("/admin/courses");
     } else if (json.error) {
-      errmsg = json.error;
-      setTimeout(() => {
-        document.getElementById("error").innerText = "";
-      }, 1500);
-      document.getElementById("error").innerText = errmsg;
-
-      setTimeout(() => {
-        Navigate("/admin/addcourse");
-      }, 2000);
+      // Handle error
+      navigate("/admin/addcourse");
     }
   };
 
   const onChange = (e) => {
-    setcredencials({ ...credencials, [e.target.name]: e.target.value });
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
   const loadCourseForEditing = async (courseId) => {
-    // Fetch course details based on courseId and set the values in the form
     const response = await fetch(`${host}/api/course/getcourse/${courseId}`, {
       method: "GET",
       headers: {
@@ -78,9 +71,9 @@ export default function Courses() {
     const json = await response.json();
     if (json.success) {
       const course = json.course;
-      setcredencials({
+      setCredentials({
         coursename: course.coursename,
-        coursediscription: course.coursediscription,
+        coursedescription: course.coursedescription,
         image: course.image,
         categories: course.categories,
       });
@@ -93,38 +86,34 @@ export default function Courses() {
   return (
     <div>
       <div className="container shadow my-5 p-3">
-        <h2 className="text-center">Course Form</h2>
+        <h2 className="text-center">{editingCourseId ? "Edit Course" : "Add Course"}</h2>
         <form onSubmit={handleCourse} method="post">
-<div className=' text-success' id='success'></div>
-    <div className=' text-danger' id='error'></div>
-  <div className="mb-3">
-    <label htmlFor="coursename" className="form-label fw-bold">Course Name</label>
-    <input type="text" className="form-control" onChange={onChange} name='coursename' id="coursename" aria-describedby="nameHelp"/>
-  </div>
+          <div className=' text-success' id='success'></div>
+          <div className=' text-danger' id='error'></div>
+          <div className="mb-3">
+            <label htmlFor="coursename" className="form-label fw-bold">Course Name</label>
+            <input type="text" className="form-control" onChange={onChange} value={credentials.coursename} name='coursename' id="coursename" aria-describedby="nameHelp" />
+          </div>
 
-  <div className="mb-3">
-    <label htmlFor="coursediscription" className="form-label fw-bold">Course Discription</label>
-    <input type="text" className="form-control" onChange={onChange} name='coursediscription' id="coursediscription" aria-describedby="nameHelp"/>
-  </div>
+          <div className="mb-3">
+            <label htmlFor="coursedescription" className="form-label fw-bold">Course Description</label>
+            <input type="text" className="form-control" onChange={onChange} name='coursedescription' id="coursedescription" value={credentials.coursedescription} aria-describedby="descriptionHelp" />
+          </div>
 
-  <div className="mb-3">
-    <label htmlFor="image" className="form-label fw-bold">Image</label>
-    <input type="text" className="form-control" onChange={onChange} name='image' id="image" aria-describedby="departmentHelp"/>
-  </div>
+          <div className="mb-3">
+            <label htmlFor="image" className="form-label fw-bold">Image</label>
+            <input type="text" className="form-control" onChange={onChange} name='image' id="image" value={credentials.image} aria-describedby="imageHelp" />
+          </div>
 
-  <div className="mb-3">
-    <label htmlFor="categories" className="form-label fw-bold">categories</label>
-    <input type="text" className="form-control" onChange={onChange} name='categories' id="categories" aria-describedby="categoriesHelp"/>
-  </div>
+          <div className="mb-3">
+            <label htmlFor="categories" className="form-label fw-bold">Categories</label>
+            <input type="text" className="form-control" onChange={onChange} name='categories' id="categories" value={credentials.categories} aria-describedby="categoriesHelp" />
+          </div>
 
-
-     
-      
-
-  <div className="text-center">
+          <div className="text-center">
             <Button
-              variant="btn border-3 border-light text-light"
-              type="submit" // Changed from type="button" to type="submit"
+              variant="btn btn-primary border-3 border-primary text-light"
+              type="submit"
             >
               {editingCourseId ? "Update Course" : "Add Course"}
             </Button>

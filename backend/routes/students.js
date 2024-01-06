@@ -41,11 +41,11 @@ router.put('/:id',fetchuser, async (req, res) => {
 // Delete Student
 router.delete('/:id',fetchuser, async (req, res) => {
     try {
-        const deletedStudent = await Student.findByIdAndRemove(req.params.id);
+        const deletedStudent = await Student.findByIdAndDelete(req.params.id);
         res.json(deletedStudent);
     } catch (error) {
         console.error(error.message);
-        res.status(500).send('Server Error');
+        res.status(500).send(error.message);
     }
 });
 
